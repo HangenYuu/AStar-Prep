@@ -5,10 +5,11 @@ GROMACS is an engine to perform molecular dynamics simulations and energy minimi
 # Tutorial
 - [https://tutorials.gromacs.org/md-intro-tutorial.html](https://tutorials.gromacs.org/md-intro-tutorial.html) - The most convenient tutorial online because GROMACS and PyMol turn out to be quite a pain in the \*ss to install. But this one comes with an online ready environment to run everything.
 # Tutorial 1
-A complete run of GROMACS using a random structure pulled from Protein Data Bank
+A complete run of GROMACS using the Factor Xa () structure pulled from Protein Data Bank
 ## Workflow
 ### System Preparation Phase
 #### 1. Initial Structure Processing (`gmx pdb2gmx`)
+- Remove
 - Convert PDB structure file to GROMACS-compatible format
 - Generate three key files:
     - **Topology file (`.top`)**: Contains force field parameters for each atom
