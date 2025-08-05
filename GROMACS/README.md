@@ -132,4 +132,19 @@ gmx grompp -f input/md-charmm.mdp -c npt.gro -t npt.cpt -p topol.top -o md.tpr
 gmx mdrun -ntmpi 2 -ntomp 8 -v -deffnm md
 ```
 > The general command is mostly unchanged between the 4 steps.
-# Tutorial 2
+# Tutorial 2 - Simulation of a Membrane Protein using GROMACS
+Using the maltoporin channel with PDB code 1MAL.
+The tutorial made use of a GUI to generate the input files for GROMACS: https://zenodo.org/records/10794193
+
+It's quite similar to the first one, with some additional notes:
+- Simulation can be very time-consuming and storage intensive (150,000 steps, each for 1 picosecond, took several days and 9GB of data).
+- When relaxing the positional restraints in NVT and NPT steps, it needs to be done in several steps to avoid sudden change in the system.
+- The root mean square deviation (RMSD) is a practical parameter to compare the backbones of a protein from its initial to final state, which illustrates the dynamics of structure during the simulation.
+# Tutorial 3 - Umbrella sampling
+The tutorial for the foundational *conformational sampling* techniques. Use umbrella sampling to examine the free-energy profile of bringing two pyrimidine molecules together in an aqueous solution.
+
+Standard MD simulation like above produces an ensemble of conformations that are likely at a given temperature using physics rules. However, the simulations struggle to account for rare events where the molecules have to cross a high energy barrier to move from one conformation to another conformation. To compensate for this instead of free sampling like the traditional MD simulation, we perform biased sampling by introducing artificial constraints to force the system to stay in/near a particular conformation.
+
+Umbrella sampling is a basic method. It is performed by defining a reaction coordinates such as the distance between two molecules, then divide the coordinates into different conformation windows. In each window, we introduce an artificial energy potential that restricts the conformation of the molecules within that window despite the potential high energy of the conformation. The energy potential introduced is often harmonic, which leads to a curve that looks like an umbrella. Simulation is performed in each window separately, who is obsession and overlaps with each other, leading to a complete profile. The biases distort the natural probability. Hence, the biased energy potentials need to be combined using specific techniques such as Weighted Histogram Analysis Method (WHAM) to remove the biased energy. The final result is an unbiased energy profile covering a full energy landscape of stable conformations and barriers.
+
+In GROMACS, each window run is a separate MD run, following the steps above
