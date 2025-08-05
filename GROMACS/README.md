@@ -3,7 +3,7 @@ GROMACS is an engine to perform molecular dynamics simulations and energy minimi
 # Course
 - [https://web.stanford.edu/class/cs279/](https://tutorials.gromacs.org/md-intro-tutorial.html) - Quite basic lecture slides, but good for my case because I do need to brush up on the basic.
 # Tutorial
-- [https://tutorials.gromacs.org/md-intro-tutorial.html](https://tutorials.gromacs.org/md-intro-tutorial.html) - The most convenient tutorial online because GROMACS and PyMol turn out to be quite a pain in the \*ss to install. But this one comes with an online ready environment to run everything.
+- [https://tutorials.gromacs.org/md-intro-tutorial.html](https://tutorials.gromacs.org/md-intro-tutorial.html) - The most convenient tutorial online because GROMACS and PyMol turn out to be quite a pain to install. But this one comes with an online ready environment to run everything.
 # Tutorial 1
 A complete run of GROMACS using the Factor Xa (1FJS) structure pulled from Protein Data Bank
 ## Workflow
@@ -147,4 +147,10 @@ Standard MD simulation like above produces an ensemble of conformations that are
 
 Umbrella sampling is a basic method. It is performed by defining a reaction coordinates such as the distance between two molecules, then divide the coordinates into different conformation windows. In each window, we introduce an artificial energy potential that restricts the conformation of the molecules within that window despite the potential high energy of the conformation. The energy potential introduced is often harmonic, which leads to a curve that looks like an umbrella. Simulation is performed in each window separately, who is obsession and overlaps with each other, leading to a complete profile. The biases distort the natural probability. Hence, the biased energy potentials need to be combined using specific techniques such as Weighted Histogram Analysis Method (WHAM) to remove the biased energy. The final result is an unbiased energy profile covering a full energy landscape of stable conformations and barriers.
 
-In GROMACS, each window run is a separate MD run, following the steps above
+In GROMACS, each window run is a separate MD run, following the steps above. The run can be performed in parallel by preparing the directories and enable the option for `gmx mdrun`.
+```bash
+gmx_mpi mdrun -multidir sampling/run*
+```
+However, it seems that running it even with GPUs is still very slow (10 hours according to the author). I could not even complete the tutorials as just running the preprocessing with `gmx wham` would crash the VM.
+
+For the analysis of the results, we 
