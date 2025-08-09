@@ -129,7 +129,7 @@ There are other GNN layers already implemented by the authors (including graph t
 
 The training is carried out with Lightning, so everything is wrapped by another Lightning layer in `lightning.py`.
 
-> I tried to run a single run of the model and log the output to log.txt
+> I tried to run a single run of the model and log the output to log.txt. There were some errors (like with ANY research codebase 😡). It runs and offers some results. Based on time interest, I could not run the training to the end at the time of writing this.
 
 # Attention mechanism
 
