@@ -1,0 +1,15 @@
+name: cppp
+channels:
+  - conda-forge
+  - pyg
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.9
+  - rdkit
+  - pytorch==2.4.1
+  - pytorch-cuda=12.4
+  - pyg
+  - lightning
+  - deepchem
+  - ipykernel
