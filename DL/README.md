@@ -158,3 +158,5 @@ The ensemble is divided into 2 "branches", traditional machine learning and deep
 I am not sure how exactly are the features combined in each stream as I don't see it in the repo. The embeddings from the 2 streams are not combined: stream 1 is passed to deep learning models, stream 2 is passed to machine learning models.
 
 ![alt text](image.png)
+
+The prediction is a weighted average from both streams, and the weight is trainable via a logistic regression layer.
